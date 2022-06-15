@@ -18,7 +18,7 @@ def main(file_name, format_file, template_path, target_folder):
 
 if __name__ == '__main__':
     file_name = "Trade_Report_SP500.csv"
-    format_file = True
+    format_file = False
     template_path = "DataPostProcess/resources/TradeReportSP500_Template.xlsx"
     target_folder = "ExcelReports"
     try:

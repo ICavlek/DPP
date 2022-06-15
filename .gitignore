@@ -1,0 +1,6 @@
+.idea/
+DataPostProcess/src/__pycache__/
+DataPostProcess/src/csv_handler/__pycache__/
+DataPostProcess/src/csv_to_excel_formatter/__pycache__/
+DataPostProcess/src/errors/__pycache__/
+DataPostProcess/src/excel_handler/__pycache__/
