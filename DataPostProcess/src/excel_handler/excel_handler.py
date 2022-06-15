@@ -1,25 +1,22 @@
 import os
-import shutil
 import pandas as pd
 import openpyxl
 import numpy as np
-from ..errors.errors import FileMissingError
 
 
-def get_excel_handler(template_path, target_folder):
-    excel_handler = ExcelHandler(template_path, target_folder)
+def get_excel_handler(target_folder):
+    excel_handler = ExcelHandler(target_folder)
     excel_handler.instantiate()
     return excel_handler
 
 
 class ExcelHandler:
-    def __init__(self, template_path, target_folder):
-        self._template_path = template_path
+    def __init__(self, target_folder):
+        self._template_name = "TradeReportSP500_{year}.xlsx"
         self._target_folder = target_folder
         self._excel_files = dict()
 
     def instantiate(self):
-        self._if_template_file_exists()
         self._if_target_folder_exists()
 
     def update_excel(self, df):
@@ -29,21 +26,13 @@ class ExcelHandler:
         excel_single.update(df)
 
     def _get_excel_single(self, year):
-        template_file_name = os.path.split(self._template_path)[-1]
-        excel_file_name = template_file_name.replace("Template", str(year))
+        excel_file_name = self._template_name.format(year=year)
         excel_file_path = os.path.join(self._target_folder, excel_file_name)
-        if not os.path.exists(excel_file_path):
-            shutil.copy(self._template_path, excel_file_path)
         if year not in self._excel_files.keys():
             excel_single = ExcelSingle(excel_file_path, year)
             excel_single.instantiate()
             self._excel_files[year] = excel_single
         return self._excel_files[year]
-
-    def _if_template_file_exists(self):
-        if os.path.exists(self._template_path):
-            return
-        raise FileMissingError(self._template_path)
 
     def _if_target_folder_exists(self):
         if os.path.exists(self._target_folder):
@@ -114,8 +103,8 @@ class ExcelSingle:
     @classmethod
     def _month_to_sheet_number(cls, month):
         month_to_num = {
-            "Jan" : 0, "Feb" : 1, "Mar" : 2, "Apr" : 3, "May" : 4, "Jun" : 5,
-            "Jul" : 6, "Aug" : 7, "Sep" : 8, "Oct" : 9, "Nov" : 10, "Dec" : 11
+            "Jan": 0, "Feb": 1, "Mar": 2, "Apr": 3, "May": 4, "Jun": 5,
+            "Jul": 6, "Aug": 7, "Sep": 8, "Oct": 9, "Nov": 10, "Dec": 11
         }
         return month_to_num[month]
 
