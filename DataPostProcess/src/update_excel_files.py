@@ -1,10 +1,12 @@
-from src.csv_handler.csv_handler import get_dataframe_from_csv_file
-from src.csv_to_excel_formatter.csv_to_excel_formatter import get_dfs_split_by_year_month
-from src.excel_handler.excel_handler import get_excel_handler
-from src.errors.errors import BaseError
+from csv_handler.csv_handler import get_dataframe_from_csv_file
+from .csv_to_excel_formatter.csv_to_excel_formatter import get_dfs_split_by_year_month
+from .excel_handler.excel_handler import get_excel_handler
+from .errors.errors import BaseError
+
+from ..test.test_main import Test1
 
 
-def main(file_name, format_file, target_folder):
+def update_excel_files(file_name, format_file, target_folder):
     print("Reading content from csv file...")
     df = get_dataframe_from_csv_file(file_name, format_file=format_file)
     print("Preparing data for excel...")
@@ -21,6 +23,6 @@ if __name__ == '__main__':
     format_file = False
     target_folder = "ExcelReports"
     try:
-        main(file_name, format_file, target_folder)
+        update_excel_files(file_name, format_file, target_folder)
     except BaseError as e:
         print(e)
