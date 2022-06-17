@@ -1,7 +1,6 @@
-from csv_handler.csv_handler import get_dataframe_from_csv_file
-from csv_handler.errors import CsvHandlerBaseError
-from csv_to_excel_formatter.csv_to_excel_formatter import get_dfs_split_by_year_month
-from excel_handler.excel_handler import get_excel_handler
+from .csv_handler.csv_handler import get_dataframe_from_csv_file
+from .csv_to_excel_formatter.csv_to_excel_formatter import get_dfs_split_by_year_month
+from .excel_handler.excel_handler import get_excel_handler
 
 
 def update_excel_files(file_name, format_file, target_folder):
@@ -14,13 +13,3 @@ def update_excel_files(file_name, format_file, target_folder):
     for df_year_month in dfs_year_month:
         excel_handler.update_excel(df_year_month)
     print("Application successfully finished!")
-
-
-if __name__ == '__main__':
-    file_name = "Trade_Report_SP500.csv"
-    format_file = False
-    target_folder = "ExcelReports"
-    try:
-        update_excel_files(file_name, format_file, target_folder)
-    except CsvHandlerBaseError as e:
-        print(e)
