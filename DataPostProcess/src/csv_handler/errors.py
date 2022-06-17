@@ -1,8 +1,8 @@
-class BaseError(Exception):
+class CsvHandlerBaseError(Exception):
     pass
 
 
-class FileMissingError(BaseError):
+class FileMissingError(CsvHandlerBaseError):
     def __init__(self, file_name):
         super().__init__()
         self._file_name = file_name

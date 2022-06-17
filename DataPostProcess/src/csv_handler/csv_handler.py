@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-from ..errors.errors import FileMissingError
+from .errors import FileMissingError
 
 
 def get_dataframe_from_csv_file(file_name, format_file=True):

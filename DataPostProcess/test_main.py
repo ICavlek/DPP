@@ -1,8 +1,8 @@
 import unittest
 import os
 import shutil
-from ..src.update_excel_files import update_excel_files
 
+from src.csv_handler.csv_handler import get_dataframe_from_csv_file
 
 class Test1:
     @classmethod
@@ -12,11 +12,11 @@ class Test1:
 
     @classmethod
     def _prepare_excel_file(cls, year):
-        excl_orig_path = f'./resources/test_1/out_excel_result/TradeReportSP500_{year}_Orig.xlsx'
-        excl_path = f'./resources/test_1/out_excel_result/TradeReportSP500_{year}.xlsx'
+        excl_orig_path = f'./test_resources/test_1/out_excel_result/TradeReportSP500_{year}_Orig.xlsx'
+        excl_path = f'./test_resources/test_1/out_excel_result/TradeReportSP500_{year}.xlsx'
         if os.path.exists(excl_path):
             os.remove(excl_path)
-        shutil.copy(excl_orig_path, excl_orig_path)
+        #shutil.copy(excl_orig_path, excl_orig_path)
 
 
 class TestExcelIsEqual(unittest.TestCase):
