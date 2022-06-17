@@ -4,12 +4,8 @@ import os
 from .errors import FileMissingError
 
 
-def get_dataframe_from_csv_file(file_name, format_file=True):
-    csv_handler = CSVHandler(file_name)
-    df = csv_handler.get_data()
-    if format_file:
-        csv_handler.format_file()
-    return df
+def get_csv_handler(file_name):
+    return CSVHandler(file_name)
 
 
 class CSVHandler:

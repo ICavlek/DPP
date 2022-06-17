@@ -1,2 +1,2 @@
-from .csv_handler import get_dataframe_from_csv_file
+from .csv_handler import get_csv_handler
 from .errors import CsvHandlerBaseError
