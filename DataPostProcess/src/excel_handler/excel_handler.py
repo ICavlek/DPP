@@ -12,7 +12,7 @@ def get_excel_handler(target_folder):
 
 class ExcelHandler:
     def __init__(self, target_folder):
-        self._template_name = "TradeReportSP500_{year}.xlsx"
+        self._template_name = "TradeReportGBPUSD_{year}.xlsx"
         self._target_folder = target_folder
         self._excel_files = dict()
 
