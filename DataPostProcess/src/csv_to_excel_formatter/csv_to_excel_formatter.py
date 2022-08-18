@@ -43,7 +43,7 @@ class DFSYearMonth:
 
     def _add_months_column(self):
         all_months = [
-            self.MONTHS[parser.parse(date).month-1]
+            self.MONTHS[parser.parse(date, dayfirst=True).month-1] #CHANGED FORMAT FOR DEMO
             for date in self._df["Date"]
         ]
         self._df.insert(len(self._df.columns), "Month", all_months)
